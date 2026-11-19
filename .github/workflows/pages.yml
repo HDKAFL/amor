@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - index.html
-      - teste.html
       - assets/**
       - .github/workflows/pages.yml
   workflow_dispatch:

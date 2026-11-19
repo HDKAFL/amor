@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#F8B4CB">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F8B4CB" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#F8B4CB" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#C94F7C" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Uma lembrança do dia de hoje e do quanto te amo.">
   <title>Nosso primeiro mês 💗</title>
   <link rel="canonical" href="https://hdkafl.github.io/amor/">
@@ -25,21 +25,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <style>
     /* Página feita só para celular. */
+    /* Tema claro (padrão) */
     :root {
       color-scheme: light;
-      /* Paleta rosa (fixa) */
       --rose: #E0618F;
       --rose-deep: #B23A6B;
       --ink: #4A1E33;
       --text: #7D4D62;
-      --cream: #FFF9FB;
       --surface: #FFEEF4;
       --blush: #FAD0DE;
       --line: #F3C6D5;
+      --paper: #FFFFFF;
+      --card: rgb(255 249 251 / 93%);
+      --card-border: rgb(255 255 255 / 80%);
+      --rule: rgb(243 198 213 / 45%);
+      --bg-glow: #FFE1D8;
+      --bg-1: #FFDCE7;
+      --bg-2: #F8B4CB;
+      --bg-3: #F29DBB;
+      --heart: rgb(255 255 255 / 60%);
       --radius: 4px;
       --serif: "Playfair Display", Georgia, serif;
       --sans: "Nunito", "Segoe UI", Arial, sans-serif;
       --hand: "Caveat", "Segoe Script", cursive;
+    }
+
+    /* Tema escuro: continua rosa, só que em tons de vinho/ameixa */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --rose: #F27BA5;
+        --rose-deep: #F59CC0;
+        --ink: #FBE4EE;
+        --text: #E3BACB;
+        --surface: #3A1B2C;
+        --blush: #5A2A42;
+        --line: #5E3149;
+        --paper: #2C1522;
+        --card: rgb(36 16 27 / 94%);
+        --card-border: rgb(242 123 165 / 18%);
+        --rule: rgb(242 123 165 / 16%);
+        --bg-glow: rgb(224 97 143 / 35%);
+        --bg-1: #4A1E33;
+        --bg-2: #2E1220;
+        --bg-3: #1F0B16;
+        --heart: rgb(242 123 165 / 35%);
+      }
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -56,8 +87,8 @@
         calc(12px + env(safe-area-inset-left));
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 0%, #FFE1D8, transparent 40%),
-        linear-gradient(170deg, #FFDCE7 0%, #F8B4CB 55%, #F29DBB 100%);
+        radial-gradient(circle at 15% 0%, var(--bg-glow), transparent 40%),
+        linear-gradient(170deg, var(--bg-1) 0%, var(--bg-2) 55%, var(--bg-3) 100%);
       font-family: var(--sans);
       overflow-x: hidden;
     }
@@ -73,7 +104,7 @@
     .hearts span {
       position: absolute;
       bottom: -40px;
-      color: rgb(255 255 255 / 60%);
+      color: var(--heart);
       animation: rise linear infinite;
       will-change: transform, opacity;
     }
@@ -90,8 +121,8 @@
       max-width: 480px;
       margin: 0 auto;
       padding: 28px 18px 32px;
-      background: rgb(255 249 251 / 93%);
-      border: 1px solid rgb(255 255 255 / 80%);
+      background: var(--card);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius);
       box-shadow:
         0 20px 50px rgb(178 58 107 / 18%),
@@ -156,7 +187,7 @@
 
     .counter li {
       padding: 12px 6px;
-      background: #fff;
+      background: var(--paper);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: 0 6px 16px rgb(224 97 143 / 10%);
@@ -269,7 +300,7 @@
       left: var(--rail);
       width: 16px;
       height: 16px;
-      background: #fff;
+      background: var(--paper);
       border: 3px solid var(--rose);
       border-radius: 50%;
       transform: translate(-50%, -50%);
@@ -291,7 +322,7 @@
     .timeline li:nth-child(3)::after { background: #EC8DB0; }
     .timeline li:last-child::after { display: none; }
 
-    .timeline li.now { background: linear-gradient(160deg, #fff, var(--blush)); }
+    .timeline li.now { background: linear-gradient(160deg, var(--paper), var(--blush)); }
 
     .timeline li.now::before {
       content: "♥";
@@ -367,9 +398,9 @@
       padding: 28px 18px;
       color: var(--text);
       background:
-        repeating-linear-gradient(transparent 0 31px, rgb(243 198 213 / 45%) 31px 32px)
+        repeating-linear-gradient(transparent 0 31px, var(--rule) 31px 32px)
         0 28px / 100% no-repeat border-box,
-        #fff;
+        var(--paper);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: 0 14px 36px rgb(178 58 107 / 10%);
