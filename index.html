@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F8B4CB" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#C94F7C" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F8B4CB" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Uma lembrança do dia de hoje e do quanto te amo.">
   <title>Nosso primeiro mês 💗</title>
   <link rel="canonical" href="https://hdkafl.github.io/amor/">
@@ -25,9 +25,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <style>
     /* Página feita só para celular. */
-    /* Tema claro (padrão) */
+    /* A página tem o MESMO visual no tema claro e no escuro do celular.
+       Declarar "light dark" serve só para o Chrome aceitar a cor rosa
+       da barra lá em cima quando o celular está no modo escuro
+       (e não escurecer a página automaticamente). */
     :root {
-      color-scheme: light;
+      color-scheme: light dark;
       --rose: #E0618F;
       --rose-deep: #B23A6B;
       --ink: #4A1E33;
@@ -48,29 +51,6 @@
       --serif: "Playfair Display", Georgia, serif;
       --sans: "Nunito", "Segoe UI", Arial, sans-serif;
       --hand: "Caveat", "Segoe Script", cursive;
-    }
-
-    /* Tema escuro: continua rosa, só que em tons de vinho/ameixa */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: dark;
-        --rose: #F27BA5;
-        --rose-deep: #F59CC0;
-        --ink: #FBE4EE;
-        --text: #E3BACB;
-        --surface: #3A1B2C;
-        --blush: #5A2A42;
-        --line: #5E3149;
-        --paper: #2C1522;
-        --card: rgb(36 16 27 / 94%);
-        --card-border: rgb(242 123 165 / 18%);
-        --rule: rgb(242 123 165 / 16%);
-        --bg-glow: rgb(224 97 143 / 35%);
-        --bg-1: #4A1E33;
-        --bg-2: #2E1220;
-        --bg-3: #1F0B16;
-        --heart: rgb(242 123 165 / 35%);
-      }
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
