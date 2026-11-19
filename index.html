@@ -740,6 +740,8 @@
           e.preventDefault();
           show(i);
           viewer.showModal();
+          /* Evita o contorno de "selecionado" no botão ✕ ao abrir (Safari/iPhone) */
+          if (document.activeElement) document.activeElement.blur();
         });
       });
 
