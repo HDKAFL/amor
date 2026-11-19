@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111820">
+  <meta name="description" content="Fiz essa página pra você porque te amo muito.">
+  <title>Nosso primeiro mês 💗</title>
+  <link rel="canonical" href="https://hdkafl.github.io/amor/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Nosso primeiro mês">
+  <meta property="og:title" content="Feliz 1 mês! 💗">
+  <meta property="og:description" content="Fiz essa página pra você porque te amo muito.">
+  <meta property="og:url" content="https://hdkafl.github.io/amor/">
+  <meta property="og:image" content="https://hdkafl.github.io/amor/assets/foto-01.jpeg">
+  <meta property="og:image:alt" content="Foto do casal deitado junto">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1433">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #1D68A6;
+      --blue-dark: #154B78;
+      --black: #111820;
+      --graphite: #25303A;
+      --white-soft: #F3F0EA;
+      --peach: #D9A095;
+      --caramel: #C0A69B;
+      --brown-gray: #6D6B6A;
+      --muted: var(--brown-gray);
+      --line: var(--caramel);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+      color: var(--white-soft);
+      background: linear-gradient(145deg, var(--black), var(--graphite));
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .card {
+      width: min(100%, 960px);
+      margin: auto;
+      padding: clamp(24px, 5vw, 52px);
+      color: var(--black);
+      background: var(--white-soft);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgb(17 24 32 / 45%);
+      animation: appear 650ms ease both;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.85fr);
+      align-items: center;
+      gap: clamp(24px, 5vw, 56px);
+      padding-bottom: clamp(28px, 5vw, 48px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-copy { text-align: left; }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--blue-dark);
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .title-heart {
+      color: var(--peach);
+      font-size: 0.65em;
+    }
+
+    .title-text em {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .intro {
+      max-width: 34rem;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      line-height: 1.55;
+    }
+
+    .hero-photo {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--peach);
+    }
+
+    .hero-photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .section { margin-top: clamp(32px, 5vw, 48px); }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      font-weight: 400;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      display: flex;
+      min-height: 92px;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px;
+      text-align: left;
+      background: var(--white-soft);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .timeline time {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue-dark);
+      font: 700 0.78rem/1.3 Arial, sans-serif;
+    }
+
+    .timeline span {
+      display: block;
+      color: var(--graphite);
+      font: 0.88rem/1.45 Arial, sans-serif;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .gallery a {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--peach);
+    }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform 220ms ease;
+    }
+
+    .gallery a:hover img { transform: scale(1.035); }
+
+    .gallery a:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .message {
+      max-width: 680px;
+      margin: clamp(32px, 5vw, 48px) auto 0;
+      padding: clamp(20px, 4vw, 30px);
+      color: var(--muted);
+      background: var(--white-soft);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 4px;
+      font-size: 1rem;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .closing {
+      margin: 24px 0 0;
+      color: var(--blue-dark);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 12px; }
+      .card { padding: 24px 18px; }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        padding-bottom: 30px;
+      }
+      .hero-copy { text-align: center; }
+      h1 { justify-content: center; font-size: clamp(2rem, 8vw, 2.8rem); }
+      .intro { margin: 12px auto 0; }
+      .hero-photo { width: min(100%, 390px); margin: 0 auto; }
+      .section { margin-top: 30px; }
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .timeline li { min-height: 82px; padding: 12px; }
+      .gallery { gap: 8px; }
+      .message { margin-top: 30px; }
+    }
+
+    @media (min-width: 681px) and (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 901px) {
+      .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Uma data só nossa</p>
+        <h1 id="page-title">
+          <span class="title-heart" aria-hidden="true">♥</span>
+          <span class="title-text">Feliz <em>1 mês!</em></span>
+        </h1>
+        <p class="intro">Fiz essa página pra você porque te amo muito.</p>
+      </div>
+      <figure class="hero-photo">
+        <img src="assets/foto-01.jpeg" alt="Foto do casal deitado junto" fetchpriority="high">
+      </figure>
+    </section>
+
+    <section class="section" aria-labelledby="timeline-title">
+      <div class="section-heading">
+        <h2 id="timeline-title">Nossa história</h2>
+      </div>
+      <ol class="timeline">
+        <li><time datetime="2026-08-11">11 de agosto</time><span>Te chamei pra sair</span></li>
+        <li><time datetime="2026-08-14">14 de agosto</time><span>Nosso primeiro encontro</span></li>
+        <li><time datetime="2026-10-19">19 de outubro</time><span>O pedido de namoro</span></li>
+        <li><time datetime="2026-11-19">19 de novembro</time><span>Um mês do pedido</span></li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="photos-title">
+      <div class="section-heading">
+        <h2 id="photos-title">Nossas fotos</h2>
+      </div>
+      <div class="gallery">
+        <a href="assets/foto-02.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-02.jpeg" alt="Nossa foto 2" loading="lazy"></a>
+        <a href="assets/foto-03.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-03.jpeg" alt="Nossa foto 3" loading="lazy"></a>
+        <a href="assets/foto-04.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-04.jpeg" alt="Nossa foto 4" loading="lazy"></a>
+        <a href="assets/foto-05.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-05.jpeg" alt="Nossa foto 5" loading="lazy"></a>
+        <a href="assets/foto-06.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-06.jpeg" alt="Nossa foto 6" loading="lazy"></a>
+        <a href="assets/foto-07.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-07.jpeg" alt="Nossa foto 7" loading="lazy"></a>
+        <a href="assets/foto-08.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-08.jpeg" alt="Nossa foto 8" loading="lazy"></a>
+        <a href="assets/foto-09.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-09.jpeg" alt="Nossa foto 9" loading="lazy"></a>
+        <a href="assets/foto-10.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-10.jpeg" alt="Foto da tela do celular com uma foto dela" loading="lazy"></a>
+        <a href="assets/foto-11.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-11.jpeg" alt="Foto dela com um bebê" loading="lazy"></a>
+        <a href="assets/foto-12.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-12.jpeg" alt="Foto de um bebê no carro" loading="lazy"></a>
+        <a href="assets/foto-13.jpeg" target="_blank" rel="noopener noreferrer"><img src="assets/foto-13.jpeg" alt="Foto em família com um bolo de aniversário" loading="lazy"></a>
+      </div>
+    </section>
+
+    <p class="message">
+      Hoje faz um mês desde que te pedi em namoro. Parece que foi ontem que te
+      chamei pra sair. Desde então, a gente conversou, riu e viveu muita coisa
+      junto. Eu sei que às vezes sou chato, doido e exagerado, mas quero sempre
+      te mostrar o quanto te amo e retribuir todo o carinho que você me dá. Eu
+      sei a doidinha que tenho do meu lado, e quero que você também saiba que tem
+      um doido do seu lado que fica louco por você.
+      <br><br>
+      Sei que às vezes a gente se desentende e posso ser ignorante no jeito de
+      falar. Desculpa quando isso acontece.
+    </p>
+    <p class="closing">Te amo muito.</p>
+  </main>
+</body>
+</html>
