@@ -62,22 +62,27 @@
     }
 
     /* ---------- Fundo que acompanha a foto ---------- */
+    /* Usa fotos minúsculas (24px) esticadas: o próprio navegador
+       suaviza, sem precisar de filter: blur (que trava no celular). */
     .ambient {
       position: fixed;
-      inset: -15%;
+      inset: 0;
       z-index: -2;
+      overflow: hidden;
       pointer-events: none;
+      contain: strict;
     }
 
     .ambient img {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      inset: -10%;
+      width: 120%;
+      height: 120%;
       object-fit: cover;
-      filter: blur(50px) saturate(1.4);
       opacity: 0;
-      transition: opacity 1.2s ease;
+      transition: opacity 1s ease;
+      will-change: opacity;
+      transform: translateZ(0);
     }
 
     .ambient img.on { opacity: 1; }
@@ -105,6 +110,7 @@
       bottom: -40px;
       color: rgb(255 255 255 / 60%);
       animation: rise linear infinite;
+      will-change: transform, opacity;
     }
 
     .hearts span:nth-child(1) { left: 6%;  font-size: 16px; animation-duration: 16s; }
@@ -123,9 +129,8 @@
       border: 1px solid rgb(255 255 255 / 80%);
       border-radius: var(--radius);
       box-shadow:
-        0 24px 60px var(--glow),
+        0 20px 50px rgb(178 58 107 / 18%),
         0 6px 18px rgb(178 58 107 / 12%);
-      transition: box-shadow 1.2s ease;
       animation: appear 700ms ease both;
     }
 
@@ -542,7 +547,7 @@
 </head>
 <body>
   <div class="ambient" aria-hidden="true">
-    <img class="on" src="assets/foto-01.jpeg" alt="">
+    <img class="on" src="assets/blur/foto-01.jpg" alt="">
     <img alt="">
   </div>
   <div class="veil" aria-hidden="true"></div>
@@ -581,18 +586,18 @@
     <section class="section" aria-labelledby="photos-title">
       <h2 id="photos-title">Nossas fotos</h2>
       <div class="gallery">
-        <a href="assets/foto-02.jpeg" data-hue="25"><img src="assets/foto-02.jpeg" alt="Nossa foto 2" loading="lazy"></a>
-        <a href="assets/foto-03.jpeg" data-hue="25"><img src="assets/foto-03.jpeg" alt="Nossa foto 3" loading="lazy"></a>
-        <a href="assets/foto-04.jpeg" data-hue="25"><img src="assets/foto-04.jpeg" alt="Nossa foto 4" loading="lazy"></a>
-        <a href="assets/foto-05.jpeg" data-hue="15"><img src="assets/foto-05.jpeg" alt="Nossa foto 5" loading="lazy"></a>
-        <a href="assets/foto-06.jpeg" data-hue="185"><img src="assets/foto-06.jpeg" alt="Nossa foto 6" loading="lazy"></a>
-        <a href="assets/foto-07.jpeg" data-hue="335"><img src="assets/foto-07.jpeg" alt="Nossa foto 7" loading="lazy"></a>
-        <a href="assets/foto-08.jpeg" data-hue="225"><img src="assets/foto-08.jpeg" alt="Nossa foto 8" loading="lazy"></a>
-        <a href="assets/foto-09.jpeg" data-hue="265"><img src="assets/foto-09.jpeg" alt="Nossa foto 9" loading="lazy"></a>
-        <a href="assets/foto-10.jpeg" data-hue="25"><img src="assets/foto-10.jpeg" alt="Foto da tela do celular com uma foto dela" loading="lazy"></a>
-        <a href="assets/foto-11.jpeg" data-hue="15"><img src="assets/foto-11.jpeg" alt="Foto dela com um bebê" loading="lazy"></a>
-        <a href="assets/foto-12.jpeg" data-hue="15"><img src="assets/foto-12.jpeg" alt="Foto de um bebê no carro" loading="lazy"></a>
-        <a href="assets/foto-13.jpeg" data-hue="25"><img src="assets/foto-13.jpeg" alt="Foto em família com um bolo de aniversário" loading="lazy"></a>
+        <a href="assets/foto-02.jpeg" data-hue="25"><img src="assets/thumbs/foto-02.jpg" decoding="async" alt="Nossa foto 2" loading="lazy"></a>
+        <a href="assets/foto-03.jpeg" data-hue="25"><img src="assets/thumbs/foto-03.jpg" decoding="async" alt="Nossa foto 3" loading="lazy"></a>
+        <a href="assets/foto-04.jpeg" data-hue="25"><img src="assets/thumbs/foto-04.jpg" decoding="async" alt="Nossa foto 4" loading="lazy"></a>
+        <a href="assets/foto-05.jpeg" data-hue="15"><img src="assets/thumbs/foto-05.jpg" decoding="async" alt="Nossa foto 5" loading="lazy"></a>
+        <a href="assets/foto-06.jpeg" data-hue="185"><img src="assets/thumbs/foto-06.jpg" decoding="async" alt="Nossa foto 6" loading="lazy"></a>
+        <a href="assets/foto-07.jpeg" data-hue="335"><img src="assets/thumbs/foto-07.jpg" decoding="async" alt="Nossa foto 7" loading="lazy"></a>
+        <a href="assets/foto-08.jpeg" data-hue="225"><img src="assets/thumbs/foto-08.jpg" decoding="async" alt="Nossa foto 8" loading="lazy"></a>
+        <a href="assets/foto-09.jpeg" data-hue="265"><img src="assets/thumbs/foto-09.jpg" decoding="async" alt="Nossa foto 9" loading="lazy"></a>
+        <a href="assets/foto-10.jpeg" data-hue="25"><img src="assets/thumbs/foto-10.jpg" decoding="async" alt="Foto da tela do celular com uma foto dela" loading="lazy"></a>
+        <a href="assets/foto-11.jpeg" data-hue="15"><img src="assets/thumbs/foto-11.jpg" decoding="async" alt="Foto dela com um bebê" loading="lazy"></a>
+        <a href="assets/foto-12.jpeg" data-hue="15"><img src="assets/thumbs/foto-12.jpg" decoding="async" alt="Foto de um bebê no carro" loading="lazy"></a>
+        <a href="assets/foto-13.jpeg" data-hue="25"><img src="assets/thumbs/foto-13.jpg" decoding="async" alt="Foto em família com um bolo de aniversário" loading="lazy"></a>
       </div>
       <p class="hint">Toque numa foto para ver maior</p>
     </section>
@@ -649,7 +654,13 @@
       var front = 0;
       var currentSrc = layers[0].getAttribute('src');
 
+      /* assets/foto-02.jpeg -> assets/blur/foto-02.jpg */
+      function blurOf(src) {
+        return src.replace(/^assets\/(foto-\d+)\.jpe?g$/, 'assets/blur/$1.jpg');
+      }
+
       function focusPhoto(src, hue) {
+        src = blurOf(src);
         if (hue != null) {
           root.style.setProperty('--hue', hue);
           if (themeMeta) themeMeta.setAttribute('content', 'hsl(' + hue + ' 60% 78%)');
@@ -683,12 +694,11 @@
       }
 
       /* Ao rolar: a foto da galeria mais perto do centro da tela vira o destaque */
-      var ticking = false;
+      /* Só calcula quando a rolagem para por um instante, para não pesar durante o scroll */
+      var settle = null;
       function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          ticking = false;
+        clearTimeout(settle);
+        settle = setTimeout(function () {
           var g = gallery.getBoundingClientRect();
           var mid = window.innerHeight / 2;
           if (g.top > mid) { setActive(null); return; }
@@ -700,9 +710,14 @@
             if (d < bestDist) { bestDist = d; best = a; }
           });
           setActive(best);
-        });
+        }, 140);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* Pré-carrega os fundos (são minúsculos, ~1KB cada) para a troca ser instantânea */
+      window.addEventListener('load', function () {
+        links.forEach(function (a) { new Image().src = blurOf(a.getAttribute('href')); });
+      });
 
       /* ---- Visualizador ---- */
       var viewer = document.querySelector('.viewer');
