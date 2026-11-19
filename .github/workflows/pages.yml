@@ -7,6 +7,7 @@ on:
     paths:
       - index.html
       - assets/**
+      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
@@ -46,9 +47,7 @@ jobs:
         if: steps.pages.outputs.actions_source == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            index.html
-            assets/
+          path: .
 
       - name: Deploy to GitHub Pages
         if: steps.pages.outputs.actions_source == 'true'
