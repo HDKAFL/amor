@@ -34,9 +34,6 @@
       --surface: #FFEEF4;
       --blush: #FAD0DE;
       --line: #F3C6D5;
-      /* Matiz da foto em destaque (muda via JS) */
-      --hue: 215;
-      --glow: hsl(var(--hue) 70% 55% / 28%);
       --radius: 4px;
       --serif: "Playfair Display", Georgia, serif;
       --sans: "Nunito", "Segoe UI", Arial, sans-serif;
@@ -56,45 +53,11 @@
         calc(24px + env(safe-area-inset-bottom))
         calc(12px + env(safe-area-inset-left));
       color: var(--ink);
-      background: #F8C4D5;
+      background:
+        radial-gradient(circle at 15% 0%, #FFE1D8, transparent 40%),
+        linear-gradient(170deg, #FFDCE7 0%, #F8B4CB 55%, #F29DBB 100%);
       font-family: var(--sans);
       overflow-x: hidden;
-    }
-
-    /* ---------- Fundo que acompanha a foto ---------- */
-    /* Usa fotos minúsculas (24px) esticadas: o próprio navegador
-       suaviza, sem precisar de filter: blur (que trava no celular). */
-    .ambient {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
-      pointer-events: none;
-      contain: strict;
-    }
-
-    .ambient img {
-      position: absolute;
-      inset: -10%;
-      width: 120%;
-      height: 120%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-      will-change: opacity;
-      transform: translateZ(0);
-    }
-
-    .ambient img.on { opacity: 1; }
-
-    .veil {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 15% 8%, rgb(255 217 207 / 70%), transparent 45%),
-        linear-gradient(160deg, rgb(255 226 236 / 72%), rgb(244 160 190 / 55%));
     }
 
     .hearts {
@@ -379,11 +342,6 @@
     .gallery a:nth-child(odd) { transform: rotate(-0.8deg); }
     .gallery a:nth-child(even) { transform: rotate(0.8deg); }
 
-    .gallery a.active {
-      transform: rotate(0deg) scale(1.03);
-      box-shadow: 0 14px 28px hsl(var(--hue) 60% 45% / 30%);
-    }
-
     .gallery a:active { transform: scale(0.97); }
 
     .gallery img {
@@ -481,7 +439,7 @@
       max-height: 72dvh;
       border: 6px solid #fff;
       border-radius: var(--radius);
-      box-shadow: 0 24px 60px hsl(var(--hue) 60% 25% / 45%);
+      box-shadow: 0 24px 60px rgb(74 30 51 / 45%);
     }
 
     .viewer figcaption {
@@ -546,11 +504,6 @@
   </style>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <img class="on" src="assets/blur/foto-01.jpg" alt="">
-    <img alt="">
-  </div>
-  <div class="veil" aria-hidden="true"></div>
   <div class="hearts" aria-hidden="true">
     <span>♥</span><span>♥</span><span>♥</span><span>♥</span><span>♥</span>
   </div>
@@ -567,7 +520,7 @@
           <li><strong>∞</strong><span>de amor</span></li>
         </ul>
       </div>
-      <figure class="polaroid" data-hue="215">
+      <figure class="polaroid">
         <img src="assets/foto-01.jpeg" alt="Foto do casal deitado junto" fetchpriority="high">
         <figcaption>nós dois ♥</figcaption>
       </figure>
@@ -586,18 +539,18 @@
     <section class="section" aria-labelledby="photos-title">
       <h2 id="photos-title">Nossas fotos</h2>
       <div class="gallery">
-        <a href="assets/foto-02.jpeg" data-hue="25"><img src="assets/thumbs/foto-02.jpg" decoding="async" alt="Nossa foto 2" loading="lazy"></a>
-        <a href="assets/foto-03.jpeg" data-hue="25"><img src="assets/thumbs/foto-03.jpg" decoding="async" alt="Nossa foto 3" loading="lazy"></a>
-        <a href="assets/foto-04.jpeg" data-hue="25"><img src="assets/thumbs/foto-04.jpg" decoding="async" alt="Nossa foto 4" loading="lazy"></a>
-        <a href="assets/foto-05.jpeg" data-hue="15"><img src="assets/thumbs/foto-05.jpg" decoding="async" alt="Nossa foto 5" loading="lazy"></a>
-        <a href="assets/foto-06.jpeg" data-hue="185"><img src="assets/thumbs/foto-06.jpg" decoding="async" alt="Nossa foto 6" loading="lazy"></a>
-        <a href="assets/foto-07.jpeg" data-hue="335"><img src="assets/thumbs/foto-07.jpg" decoding="async" alt="Nossa foto 7" loading="lazy"></a>
-        <a href="assets/foto-08.jpeg" data-hue="225"><img src="assets/thumbs/foto-08.jpg" decoding="async" alt="Nossa foto 8" loading="lazy"></a>
-        <a href="assets/foto-09.jpeg" data-hue="265"><img src="assets/thumbs/foto-09.jpg" decoding="async" alt="Nossa foto 9" loading="lazy"></a>
-        <a href="assets/foto-10.jpeg" data-hue="25"><img src="assets/thumbs/foto-10.jpg" decoding="async" alt="Foto da tela do celular com uma foto dela" loading="lazy"></a>
-        <a href="assets/foto-11.jpeg" data-hue="15"><img src="assets/thumbs/foto-11.jpg" decoding="async" alt="Foto dela com um bebê" loading="lazy"></a>
-        <a href="assets/foto-12.jpeg" data-hue="15"><img src="assets/thumbs/foto-12.jpg" decoding="async" alt="Foto de um bebê no carro" loading="lazy"></a>
-        <a href="assets/foto-13.jpeg" data-hue="25"><img src="assets/thumbs/foto-13.jpg" decoding="async" alt="Foto em família com um bolo de aniversário" loading="lazy"></a>
+        <a href="assets/foto-02.jpeg"><img src="assets/thumbs/foto-02.jpg" decoding="async" alt="Nossa foto 2" loading="lazy"></a>
+        <a href="assets/foto-03.jpeg"><img src="assets/thumbs/foto-03.jpg" decoding="async" alt="Nossa foto 3" loading="lazy"></a>
+        <a href="assets/foto-04.jpeg"><img src="assets/thumbs/foto-04.jpg" decoding="async" alt="Nossa foto 4" loading="lazy"></a>
+        <a href="assets/foto-05.jpeg"><img src="assets/thumbs/foto-05.jpg" decoding="async" alt="Nossa foto 5" loading="lazy"></a>
+        <a href="assets/foto-06.jpeg"><img src="assets/thumbs/foto-06.jpg" decoding="async" alt="Nossa foto 6" loading="lazy"></a>
+        <a href="assets/foto-07.jpeg"><img src="assets/thumbs/foto-07.jpg" decoding="async" alt="Nossa foto 7" loading="lazy"></a>
+        <a href="assets/foto-08.jpeg"><img src="assets/thumbs/foto-08.jpg" decoding="async" alt="Nossa foto 8" loading="lazy"></a>
+        <a href="assets/foto-09.jpeg"><img src="assets/thumbs/foto-09.jpg" decoding="async" alt="Nossa foto 9" loading="lazy"></a>
+        <a href="assets/foto-10.jpeg"><img src="assets/thumbs/foto-10.jpg" decoding="async" alt="Foto da tela do celular com uma foto dela" loading="lazy"></a>
+        <a href="assets/foto-11.jpeg"><img src="assets/thumbs/foto-11.jpg" decoding="async" alt="Foto dela com um bebê" loading="lazy"></a>
+        <a href="assets/foto-12.jpeg"><img src="assets/thumbs/foto-12.jpg" decoding="async" alt="Foto de um bebê no carro" loading="lazy"></a>
+        <a href="assets/foto-13.jpeg"><img src="assets/thumbs/foto-13.jpg" decoding="async" alt="Foto em família com um bolo de aniversário" loading="lazy"></a>
       </div>
       <p class="hint">Toque numa foto para ver maior</p>
     </section>
@@ -635,9 +588,6 @@
 
   <script>
     (function () {
-      var root = document.documentElement;
-      var themeMeta = document.querySelector('meta[name="theme-color"]');
-
       /* ---- Contador desde o pedido (19/10/2026) ---- */
       var start = new Date(2026, 9, 19);
       function tick() {
@@ -649,75 +599,7 @@
       tick();
       setInterval(tick, 60000);
 
-      /* ---- Fundo que acompanha a foto em destaque ---- */
-      var layers = document.querySelectorAll('.ambient img');
-      var front = 0;
-      var currentSrc = layers[0].getAttribute('src');
-
-      /* assets/foto-02.jpeg -> assets/blur/foto-02.jpg */
-      function blurOf(src) {
-        return src.replace(/^assets\/(foto-\d+)\.jpe?g$/, 'assets/blur/$1.jpg');
-      }
-
-      function focusPhoto(src, hue) {
-        src = blurOf(src);
-        if (hue != null) {
-          root.style.setProperty('--hue', hue);
-          if (themeMeta) themeMeta.setAttribute('content', 'hsl(' + hue + ' 60% 78%)');
-        }
-        if (src === currentSrc) return;
-        currentSrc = src;
-        var back = layers[1 - front];
-        back.onload = function () {
-          back.classList.add('on');
-          layers[front].classList.remove('on');
-          front = 1 - front;
-        };
-        back.src = src;
-      }
-
-      var hero = document.querySelector('.polaroid');
       var links = Array.prototype.slice.call(document.querySelectorAll('.gallery a'));
-      var gallery = document.querySelector('.gallery');
-      var active = null;
-
-      function setActive(link) {
-        if (active === link) return;
-        if (active) active.classList.remove('active');
-        active = link;
-        if (link) {
-          link.classList.add('active');
-          focusPhoto(link.getAttribute('href'), link.dataset.hue);
-        } else {
-          focusPhoto(hero.querySelector('img').getAttribute('src'), hero.dataset.hue);
-        }
-      }
-
-      /* Ao rolar: a foto da galeria mais perto do centro da tela vira o destaque */
-      /* Só calcula quando a rolagem para por um instante, para não pesar durante o scroll */
-      var settle = null;
-      function onScroll() {
-        clearTimeout(settle);
-        settle = setTimeout(function () {
-          var g = gallery.getBoundingClientRect();
-          var mid = window.innerHeight / 2;
-          if (g.top > mid) { setActive(null); return; }
-          if (g.bottom < mid * 0.6) return;
-          var best = null, bestDist = Infinity;
-          links.forEach(function (a) {
-            var r = a.getBoundingClientRect();
-            var d = Math.abs((r.top + r.bottom) / 2 - mid) + Math.abs((r.left + r.right) / 2 - window.innerWidth / 2) * 0.3;
-            if (d < bestDist) { bestDist = d; best = a; }
-          });
-          setActive(best);
-        }, 140);
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      /* Pré-carrega os fundos (são minúsculos, ~1KB cada) para a troca ser instantânea */
-      window.addEventListener('load', function () {
-        links.forEach(function (a) { new Image().src = blurOf(a.getAttribute('href')); });
-      });
 
       /* ---- Visualizador ---- */
       var viewer = document.querySelector('.viewer');
@@ -732,7 +614,6 @@
         vImg.src = a.getAttribute('href');
         vImg.alt = a.querySelector('img').alt;
         vCap.textContent = (index + 1) + ' de ' + links.length;
-        setActive(a);
       }
 
       links.forEach(function (a, i) {
